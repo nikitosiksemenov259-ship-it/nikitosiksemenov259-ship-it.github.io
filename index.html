@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="author" content="Никита">
+    <title>✨ Школьный Хаб | ДЗ от Никиты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ХЕДЕР */
+        .hero {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-icon {
+            font-size: 70px;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            background: linear-gradient(135deg, #fff, #a8c0ff, #3f2b96);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero .subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        /* ПЛАШКА НИКИТЫ */
+        .creator-badge {
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,107,107,0.2));
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 10px 20px;
+            width: fit-content;
+            margin: 0 auto 25px auto;
+            border: 1px solid rgba(255,215,0,0.5);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255,215,0,0.3); }
+            50% { box-shadow: 0 0 20px rgba(255,215,0,0.6); }
+        }
+
+        .creator-badge span {
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* СТАТИСТИКА */
+        .stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px;
+            flex: 1;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 5px;
+        }
+
+        /* КАРТОЧКИ ДЗ */
+        .homework-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .hw-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hw-card:active {
+            transform: scale(0.98);
+        }
+
+        .hw-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b, #ffd700);
+            background-size: 300% 100%;
+            animation: gradientMove 3s infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .hw-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .hw-subject {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hw-task {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 18px;
+            margin: 12px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #2c3e50;
+            border-left: 4px solid #764ba2;
+        }
+
+        .hw-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .hw-deadline {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .hw-date {
+            color: #999;
+            font-size: 11px;
+        }
+
+        .complete-btn {
+            background: none;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            padding: 6px 15px;
+            font-size: 12px;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .complete-btn:active {
+            transform: scale(0.95);
+        }
+
+        .complete-btn.done {
+            background: #4cd964;
+            border-color: #4cd964;
+            color: white;
+        }
+
+        /* АДМИН-ПАНЕЛЬ (скрытая) */
+        .admin-panel {
+            display: none;
+            background: white;
+            border-radius: 28px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .admin-panel.show {
+            display: block;
+        }
+
+        .admin-panel h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .admin-panel input, .admin-panel textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .admin-panel textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .admin-btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .admin-item {
+            background: #f8f9fa;
+            border-radius: 18px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-item-info {
+            flex: 1;
+        }
+
+        .admin-item-subject {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 17px;
+        }
+
+        .admin-item-task {
+            font-size: 13px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .admin-item-deadline {
+            font-size: 11px;
+            color: #00b09b;
+            margin-top: 5px;
+        }
+
+        .admin-delete-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ФУТЕР */
+        .footer-credit {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nikita-name {
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .verified {
+            background: #4cd964;
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        /* КНОПКИ ВХОДА/ВЫХОДА */
+        .admin-toggle-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.3);
+            z-index: 100;
+            transition: all 0.2s;
+        }
+
+        .admin-toggle-btn:active {
+            transform: scale(0.9);
+        }
+
+        .admin-toggle-btn span {
+            font-size: 28px;
+            color: white;
+        }
+
+        .logout-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: #ff4757;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.3);
+            z-index: 100;
+            transition: all 0.2s;
+            display: none;
+        }
+
+        .logout-btn.show {
+            display: flex;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 28px;
+            color: white;
+        }
+
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+
+        .password-modal-content {
+            background: white;
+            border-radius: 32px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .password-modal input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .password-modal button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="hero">
+        <div class="hero-icon">🎓✨</div>
+        <h1>SchoolHub</h1>
+        <div class="subtitle">ТВОЙ ГИД В МИРЕ ЗНАНИЙ</div>
+    </div>
+
+    <div style="text-align: center;">
+        <div class="creator-badge">
+            <span>🔥 САЙТ СДЕЛАЛ ⚡ НИКИТА ⚡ 🔨</span>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card"><div class="stat-number" id="totalCount">0</div><div class="stat-label">ВСЕГО ДЗ</div></div>
+        <div class="stat-card"><div class="stat-number" id="todayCount">0</div><div class="stat-label">НА СЕГОДНЯ</div></div>
+        <div class="stat-card"><div class="stat-number">👑</div><div class="stat-label">НИКИТА ★</div></div>
+    </div>
+
+    <h2 style="color: white; margin-bottom: 15px;">📋 Домашнее задание</h2>
+
+    <div id="homeworkList" class="homework-list">
+        <div class="loader">Загрузка... ⏳</div>
+    </div>
+
+    <!-- СКРЫТАЯ АДМИН-ПАНЕЛЬ -->
+    <div id="adminPanel" class="admin-panel">
+        <h3>🔐 Панель управления</h3>
+        <input type="text" id="newSubject" placeholder="Предмет (например: Математика)">
+        <textarea id="newTask" placeholder="Что задали?"></textarea>
+        <input type="text" id="newDeadline" placeholder="Срок (например: 27.04)">
+        <button class="admin-btn-submit" onclick="addHomework()">📤 Добавить задание</button>
+        
+        <h3 style="margin-top: 30px;">📋 Управление заданиями</h3>
+        <div id="adminList"></div>
+    </div>
+
+    <div class="footer-credit">
+        <div><span class="nikita-name">✨ НИКИТА ✨</span><span class="verified">✓ ПОДТВЕРЖДЕНО</span></div>
+        <p style="color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 8px;">⭐ Дизайн и разработка — авторский проект Никиты ⭐</p>
+    </div>
+</div>
+
+<div class="admin-toggle-btn" onclick="showPasswordModal()">
+    <span>🔐</span>
+</div>
+<div id="logoutBtn" class="logout-btn" onclick="logout()">
+    <span>🚪</span>
+</div>
+
+<script>
+    // ПАРОЛЬ ДЛЯ ВХОДА В АДМИНКУ
+    const ADMIN_PASSWORD = "school2025";
+    
+    // ЗАГРУЗКА ДАННЫХ ИЗ ХРАНИЛИЩА
+    function loadHomework() {
+        const saved = localStorage.getItem('homework_nikita');
+        if (saved) {
+            homework = JSON.parse(saved);
+        } else {
+            homework = [
+                { id: 1, subject: "Математика", task: "№545, 546, решить уравнение", deadline: "27.04", date: "25.04" },
+                { id: 2, subject: "Физика", task: "§34 конспект, упр. 12 (3,4)", deadline: "28.04", date: "25.04" },
+                { id: 3, subject: "Русский язык", task: "Сочинение на тему 'Весна'", deadline: "29.04", date: "25.04" }
+            ];
+            saveHomework();
+        }
+        displayHomework();
+    }
+    
+    function saveHomework() {
+        localStorage.setItem('homework_nikita', JSON.stringify(homework));
+    }
+    
+    function displayHomework() {
+        const container = document.getElementById('homeworkList');
+        const totalCount = document.getElementById('totalCount');
+        
+        totalCount.innerText = homework.length;
+        document.getElementById('todayCount').innerText = Math.min(homework.length, Math.floor(Math.random() * homework.length) + 1) || 0;
+        
+        if (homework.length === 0) {
+            container.innerHTML = '<div class="empty-state">🎉 Домашнего задания пока нет! Отдыхайте :)</div>';
+            return;
+        }
+        
+        let html = '';
+        for (let i = 0; i < homework.length; i++) {
+            const hw = homework[i];
+            let emoji = '📝';
+            if (hw.subject.toLowerCase().includes('матем')) emoji = '📐';
+            else if (hw.subject.toLowerCase().includes('рус')) emoji = '📖';
+            else if (hw.subject.toLowerCase().includes('физик')) emoji = '⚡';
+            else if (hw.subject.toLowerCase().includes('англ')) emoji = '🇬🇧';
+            else if (hw.subject.toLowerCase().includes('истори')) emoji = '🏛️';
+            
+            html += `
+                <div class="hw-card">
+                    <div class="hw-header">
+                        <span class="hw-subject">${emoji} ${hw.subject}</span>
+                    </div>
+                    <div class="hw-task">${hw.task}</div>
+                    <div class="hw-footer">
+                        <span class="hw-deadline">⏰ ${hw.deadline}</span>
+                        <span class="hw-date">📅 ${hw.date}</span>
+                        <button class="complete-btn" onclick="markDone(this)">✓ Готово</button>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+        
+        // Обновляем админ-панель, если она открыта
+        if (document.getElementById('adminPanel').classList.contains('show')) {
+            displayAdminList();
+        }
+    }
+    
+    function displayAdminList() {
+        const container = document.getElementById('adminList');
+        if (homework.length === 0) {
+            container.innerHTML = '<div class="empty-message" style="text-align:center;padding:40px;color:#999;">📭 Пока нет заданий</div>';
+            return;
+        }
+        
+        let html = '';
+        for (let i = 0; i < homework.length; i++) {
+            const hw = homework[i];
+            html += `
+                <div class="admin-item">
+                    <div class="admin-item-info">
+                        <div class="admin-item-subject">${hw.subject}</div>
+                        <div class="admin-item-task">${hw.task}</div>
+                        <div class="admin-item-deadline">⏰ ${hw.deadline}</div>
+                    </div>
+                    <button class="admin-delete-btn" onclick="deleteHomework(${hw.id})">×</button>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+    
+    function addHomework() {
+        const subject = document.getElementById('newSubject').value;
+        const task = document.getElementById('newTask').value;
+        const deadline = document.getElementById('newDeadline').value;
+        
+        if (!subject || !task || !deadline) {
+            alert('Заполни все поля!');
+            return;
+        }
+        
+        const newId = homework.length > 0 ? Math.max(...homework.map(h => h.id)) + 1 : 1;
+        const date = new Date().toLocaleDateString('ru-RU');
+        
+        homework.push({
+            id: newId,
+            subject: subject,
+            task: task,
+            deadline: deadline,
+            date: date
+        });
+        
+        saveHomework();
+        displayHomework();
+        displayAdminList();
+        
+        document.getElementById('newSubject').value = '';
+        document.getElementById('newTask').value = '';
+        document.getElementById('newDeadline').value = '';
+        
+        alert('✅ Задание добавлено!');
+    }
+    
+    function deleteHomework(id) {
+        if (confirm('Точно удалить это задание?')) {
+            homework = homework.filter(h => h.id !== id);
+            saveHomework();
+            displayHomework();
+            displayAdminList();
+        }
+    }
+    
+    function markDone(btn) {
+        if (btn.classList.contains('done')) {
+            btn.classList.remove('done');
+            btn.innerText = '✓ Готово';
+        } else {
+            btn.classList.add('done');
+            btn.innerText = '✓ Сделано!';
+            if (navigator.vibrate) navigator.vibrate(50);
+        }
+    }
+    
+    let isAdmin = false;
+    
+    function showPasswordModal() {
+        const pwd = prompt('🔐 Введите пароль для входа в админ-панель:');
+        if (pwd === ADMIN_PASSWORD) {
+            isAdmin = true;
+            document.getElementById('adminPanel').classList.add('show');
+            document.getElementById('logoutBtn').classList.add('show');
+            displayAdminList();
+            alert('Добро пожаловать, Никита! Теперь ты можешь добавлять и удалять ДЗ.');
+        } else if (pwd !== null) {
+            alert('❌ Неверный пароль!');
+        }
+    }
+    
+    function logout() {
+        isAdmin = false;
+        document.getElementById('adminPanel').classList.remove('show');
+        document.getElementById('logoutBtn').classList.remove('show');
+        alert('Вы вышли из админ-панели.');
+    }
+    
+    // Инициализация
+    let homework = [];
+    loadHomework();
+    
+    console.log('%c✨ Сайт сделал Никита! ✨', 'color: #ffd700; font-size: 16px; font-weight: bold');
+    console.log('%c🔐 Пароль для входа в админку: school2025', 'color: #667eea; font-size: 12px');
+</script>
+
+</body>
+</html>
