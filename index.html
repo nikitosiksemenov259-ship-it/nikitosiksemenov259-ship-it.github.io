@@ -25,7 +25,6 @@
             margin: 0 auto;
         }
 
-        /* ХЕДЕР */
         .hero {
             text-align: center;
             margin-bottom: 30px;
@@ -56,7 +55,6 @@
             letter-spacing: 2px;
         }
 
-        /* ПЛАШКА НИКИТЫ */
         .creator-badge {
             background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,107,107,0.2));
             backdrop-filter: blur(10px);
@@ -82,7 +80,6 @@
             color: transparent;
         }
 
-        /* СТАТИСТИКА */
         .stats {
             display: flex;
             gap: 12px;
@@ -114,7 +111,6 @@
             margin-top: 5px;
         }
 
-        /* КАРТОЧКИ ДЗ */
         .homework-list {
             display: flex;
             flex-direction: column;
@@ -224,96 +220,6 @@
             color: white;
         }
 
-        /* АДМИН-ПАНЕЛЬ (скрытая) */
-        .admin-panel {
-            display: none;
-            background: white;
-            border-radius: 28px;
-            padding: 25px;
-            margin-top: 30px;
-        }
-
-        .admin-panel.show {
-            display: block;
-        }
-
-        .admin-panel h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .admin-panel input, .admin-panel textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 16px;
-            margin-bottom: 12px;
-            font-size: 15px;
-            font-family: inherit;
-        }
-
-        .admin-panel textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .admin-btn-submit {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #00b09b, #96c93d);
-            color: white;
-            border: none;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .admin-item {
-            background: #f8f9fa;
-            border-radius: 18px;
-            padding: 15px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .admin-item-info {
-            flex: 1;
-        }
-
-        .admin-item-subject {
-            font-weight: 700;
-            color: #667eea;
-            font-size: 17px;
-        }
-
-        .admin-item-task {
-            font-size: 13px;
-            color: #555;
-            margin-top: 5px;
-        }
-
-        .admin-item-deadline {
-            font-size: 11px;
-            color: #00b09b;
-            margin-top: 5px;
-        }
-
-        .admin-delete-btn {
-            background: #ff4757;
-            color: white;
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* ФУТЕР */
         .footer-credit {
             margin-top: 40px;
             text-align: center;
@@ -341,105 +247,12 @@
             margin-left: 8px;
         }
 
-        /* КНОПКИ ВХОДА/ВЫХОДА */
-        .admin-toggle-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            cursor: pointer;
-            border: 2px solid rgba(255,255,255,0.3);
-            z-index: 100;
-            transition: all 0.2s;
-        }
-
-        .admin-toggle-btn:active {
-            transform: scale(0.9);
-        }
-
-        .admin-toggle-btn span {
-            font-size: 28px;
-            color: white;
-        }
-
-        .logout-btn {
-            position: fixed;
-            bottom: 100px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background: #ff4757;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            cursor: pointer;
-            border: 2px solid rgba(255,255,255,0.3);
-            z-index: 100;
-            transition: all 0.2s;
-            display: none;
-        }
-
-        .logout-btn.show {
-            display: flex;
-        }
-
         .empty-state {
             text-align: center;
             padding: 60px 20px;
             background: rgba(255,255,255,0.1);
             border-radius: 28px;
             color: white;
-        }
-
-        .password-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 200;
-        }
-
-        .password-modal-content {
-            background: white;
-            border-radius: 32px;
-            padding: 30px;
-            width: 300px;
-            text-align: center;
-        }
-
-        .password-modal input {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #ddd;
-            border-radius: 20px;
-            margin: 20px 0;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .password-modal button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            font-size: 16px;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -466,21 +279,7 @@
 
     <h2 style="color: white; margin-bottom: 15px;">📋 Домашнее задание</h2>
 
-    <div id="homeworkList" class="homework-list">
-        <div class="loader">Загрузка... ⏳</div>
-    </div>
-
-    <!-- СКРЫТАЯ АДМИН-ПАНЕЛЬ -->
-    <div id="adminPanel" class="admin-panel">
-        <h3>🔐 Панель управления</h3>
-        <input type="text" id="newSubject" placeholder="Предмет (например: Математика)">
-        <textarea id="newTask" placeholder="Что задали?"></textarea>
-        <input type="text" id="newDeadline" placeholder="Срок (например: 27.04)">
-        <button class="admin-btn-submit" onclick="addHomework()">📤 Добавить задание</button>
-        
-        <h3 style="margin-top: 30px;">📋 Управление заданиями</h3>
-        <div id="adminList"></div>
-    </div>
+    <div id="homeworkList" class="homework-list"></div>
 
     <div class="footer-credit">
         <div><span class="nikita-name">✨ НИКИТА ✨</span><span class="verified">✓ ПОДТВЕРЖДЕНО</span></div>
@@ -488,35 +287,36 @@
     </div>
 </div>
 
-<div class="admin-toggle-btn" onclick="showPasswordModal()">
-    <span>🔐</span>
-</div>
-<div id="logoutBtn" class="logout-btn" onclick="logout()">
-    <span>🚪</span>
-</div>
-
 <script>
-    // ПАРОЛЬ ДЛЯ ВХОДА В АДМИНКУ
-    const ADMIN_PASSWORD = "school2025";
+    // ========================================
+    // 📝 НИКИТА — ТУТ ТЫ ДОБАВЛЯЕШЬ/УДАЛЯЕШЬ ДЗ
+    // ========================================
     
-    // ЗАГРУЗКА ДАННЫХ ИЗ ХРАНИЛИЩА
-    function loadHomework() {
-        const saved = localStorage.getItem('homework_nikita');
-        if (saved) {
-            homework = JSON.parse(saved);
-        } else {
-            homework = [
-                { id: 1, subject: "Математика", task: "cтр 26 №10(а), стр 28 №5,7", deadline: "28.04", date: "27.04" },
-                { id: 2, subject: "Литература", task: "Повторение.", deadline: "28.04", date: "27.04" },
-                { id: 3, subject: "Русский язык", task: "стр 108 упр 3 правила.", deadline: "28.04", date: "27.04" }
-            ];
-            saveHomework();
-        }
-        displayHomework();
-    }
+    let homework = [
+        { subject: "Математика", task: "стр 26 №10(а), стр 28 №5,7", deadline: "27.04", date: "25.04" },
+        { subject: "Литература", task: "Повторение.", deadline: "28.04", date: "25.04" },
+        { subject: "Русский язык", task: "Стр 108 упр 3 правила.", deadline: "29.04", date: "25.04" }
+    ];
     
-    function saveHomework() {
-        localStorage.setItem('homework_nikita', JSON.stringify(homework));
+    // ========================================
+    // КАК ДОБАВИТЬ НОВОЕ ДЗ:
+    // Скопируй строчку ниже и вставь её в массив homework (после запятой)
+    // { subject: "Химия", task: "§15 читать, вопросы 1-5", deadline: "30.04", date: "27.04" },
+    // ========================================
+    
+    // КАК УДАЛИТЬ ДЗ:
+    // Просто удали строчку с ненужным заданием
+    // ВНИМАНИЕ: после последнего задания запятую ставить НЕ НАДО!
+    // ========================================
+    
+    // ДАЛЬШЕ НИЧЕГО НЕ ТРОГАЙ
+    // ========================================
+    
+    function formatDate() {
+        const today = new Date();
+        const day = today.getDate().toString().padStart(2, '0');
+        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        return `${day}.${month}`;
     }
     
     function displayHomework() {
@@ -524,7 +324,16 @@
         const totalCount = document.getElementById('totalCount');
         
         totalCount.innerText = homework.length;
-        document.getElementById('todayCount').innerText = Math.min(homework.length, Math.floor(Math.random() * homework.length) + 1) || 0;
+        
+        // Подсчёт ДЗ на сегодня/завтра (для статистики)
+        const today = formatDate();
+        let upcomingCount = 0;
+        for (const hw of homework) {
+            if (hw.deadline === today || hw.deadline.includes('завтра') || hw.deadline === formatDate()) {
+                upcomingCount++;
+            }
+        }
+        document.getElementById('todayCount').innerText = upcomingCount || Math.min(homework.length, 2);
         
         if (homework.length === 0) {
             container.innerHTML = '<div class="empty-state">🎉 Домашнего задания пока нет! Отдыхайте :)</div>';
@@ -535,97 +344,41 @@
         for (let i = 0; i < homework.length; i++) {
             const hw = homework[i];
             let emoji = '📝';
-            if (hw.subject.toLowerCase().includes('матем')) emoji = '📐';
-            else if (hw.subject.toLowerCase().includes('рус')) emoji = '📖';
-            else if (hw.subject.toLowerCase().includes('физик')) emoji = '⚡';
-            else if (hw.subject.toLowerCase().includes('англ')) emoji = '🇬🇧';
-            else if (hw.subject.toLowerCase().includes('истори')) emoji = '🏛️';
+            const subj = hw.subject.toLowerCase();
+            if (subj.includes('матем')) emoji = '📐';
+            else if (subj.includes('рус')) emoji = '📖';
+            else if (subj.includes('физик')) emoji = '⚡';
+            else if (subj.includes('англ')) emoji = '🇬🇧';
+            else if (subj.includes('истори')) emoji = '🏛️';
+            else if (subj.includes('хим')) emoji = '🧪';
+            else if (subj.includes('биолог')) emoji = '🧬';
+            else if (subj.includes('литер')) emoji = '📚';
             
             html += `
                 <div class="hw-card">
                     <div class="hw-header">
-                        <span class="hw-subject">${emoji} ${hw.subject}</span>
+                        <span class="hw-subject">${emoji} ${escapeHtml(hw.subject)}</span>
                     </div>
-                    <div class="hw-task">${hw.task}</div>
+                    <div class="hw-task">${escapeHtml(hw.task)}</div>
                     <div class="hw-footer">
-                        <span class="hw-deadline">⏰ ${hw.deadline}</span>
-                        <span class="hw-date">📅 ${hw.date}</span>
+                        <span class="hw-deadline">⏰ ${escapeHtml(hw.deadline)}</span>
+                        <span class="hw-date">📅 ${hw.date || formatDate()}</span>
                         <button class="complete-btn" onclick="markDone(this)">✓ Готово</button>
                     </div>
                 </div>
             `;
         }
         container.innerHTML = html;
-        
-        // Обновляем админ-панель, если она открыта
-        if (document.getElementById('adminPanel').classList.contains('show')) {
-            displayAdminList();
-        }
     }
     
-    function displayAdminList() {
-        const container = document.getElementById('adminList');
-        if (homework.length === 0) {
-            container.innerHTML = '<div class="empty-message" style="text-align:center;padding:40px;color:#999;">📭 Пока нет заданий</div>';
-            return;
-        }
-        
-        let html = '';
-        for (let i = 0; i < homework.length; i++) {
-            const hw = homework[i];
-            html += `
-                <div class="admin-item">
-                    <div class="admin-item-info">
-                        <div class="admin-item-subject">${hw.subject}</div>
-                        <div class="admin-item-task">${hw.task}</div>
-                        <div class="admin-item-deadline">⏰ ${hw.deadline}</div>
-                    </div>
-                    <button class="admin-delete-btn" onclick="deleteHomework(${hw.id})">×</button>
-                </div>
-            `;
-        }
-        container.innerHTML = html;
-    }
-    
-    function addHomework() {
-        const subject = document.getElementById('newSubject').value;
-        const task = document.getElementById('newTask').value;
-        const deadline = document.getElementById('newDeadline').value;
-        
-        if (!subject || !task || !deadline) {
-            alert('Заполни все поля!');
-            return;
-        }
-        
-        const newId = homework.length > 0 ? Math.max(...homework.map(h => h.id)) + 1 : 1;
-        const date = new Date().toLocaleDateString('ru-RU');
-        
-        homework.push({
-            id: newId,
-            subject: subject,
-            task: task,
-            deadline: deadline,
-            date: date
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
         });
-        
-        saveHomework();
-        displayHomework();
-        displayAdminList();
-        
-        document.getElementById('newSubject').value = '';
-        document.getElementById('newTask').value = '';
-        document.getElementById('newDeadline').value = '';
-        
-        alert('✅ Задание добавлено!');
-    }
-    
-    function deleteHomework(id) {
-        if (confirm('Точно удалить это задание?')) {
-            homework = homework.filter(h => h.id !== id);
-            saveHomework();
-            displayHomework();
-            displayAdminList();
-        }
     }
     
     function markDone(btn) {
@@ -639,34 +392,10 @@
         }
     }
     
-    let isAdmin = false;
-    
-    function showPasswordModal() {
-        const pwd = prompt('🔐 Введите пароль для входа в админ-панель:');
-        if (pwd === ADMIN_PASSWORD) {
-            isAdmin = true;
-            document.getElementById('adminPanel').classList.add('show');
-            document.getElementById('logoutBtn').classList.add('show');
-            displayAdminList();
-            alert('Добро пожаловать, Никита! Теперь ты можешь добавлять и удалять ДЗ.');
-        } else if (pwd !== null) {
-            alert('❌ Неверный пароль!');
-        }
-    }
-    
-    function logout() {
-        isAdmin = false;
-        document.getElementById('adminPanel').classList.remove('show');
-        document.getElementById('logoutBtn').classList.remove('show');
-        alert('Вы вышли из админ-панели.');
-    }
-    
-    // Инициализация
-    let homework = [];
-    loadHomework();
+    displayHomework();
     
     console.log('%c✨ Сайт сделал Никита! ✨', 'color: #ffd700; font-size: 16px; font-weight: bold');
-    console.log('%c🔐 Пароль для входа в админку: school2025', 'color: #667eea; font-size: 12px');
+    console.log('%c📝 Чтобы добавить ДЗ, открой index.html в редакторе и отредактируй массив homework', 'color: #667eea; font-size: 12px');
 </script>
 
 </body>
