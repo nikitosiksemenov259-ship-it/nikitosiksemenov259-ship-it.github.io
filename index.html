@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="author" content="Никита">
+    <title>✨ Школьный Хаб | ДЗ от Никиты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-icon {
+            font-size: 70px;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            background: linear-gradient(135deg, #fff, #a8c0ff, #3f2b96);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero .subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .creator-badge {
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,107,107,0.2));
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 10px 20px;
+            width: fit-content;
+            margin: 0 auto 25px auto;
+            border: 1px solid rgba(255,215,0,0.5);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255,215,0,0.3); }
+            50% { box-shadow: 0 0 20px rgba(255,215,0,0.6); }
+        }
+
+        .creator-badge span {
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px;
+            flex: 1;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 5px;
+        }
+
+        .homework-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .hw-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hw-card:active {
+            transform: scale(0.98);
+        }
+
+        .hw-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b, #ffd700);
+            background-size: 300% 100%;
+            animation: gradientMove 3s infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .hw-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .hw-subject {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hw-task {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 18px;
+            margin: 12px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #2c3e50;
+            border-left: 4px solid #764ba2;
+        }
+
+        .hw-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .hw-deadline {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .hw-date {
+            color: #999;
+            font-size: 11px;
+        }
+
+        .complete-btn {
+            background: none;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            padding: 6px 15px;
+            font-size: 12px;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .complete-btn:active {
+            transform: scale(0.95);
+        }
+
+        .complete-btn.done {
+            background: #4cd964;
+            border-color: #4cd964;
+            color: white;
+        }
+
+        .footer-credit {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nikita-name {
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .verified {
+            background: #4cd964;
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 28px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="hero">
+        <div class="hero-icon">🎓✨</div>
+        <h1>SchoolHub</h1>
+        <div class="subtitle">ТВОЙ ГИД В МИРЕ ЗНАНИЙ</div>
+    </div>
+
+    <div style="text-align: center;">
+        <div class="creator-badge">
+            <span>🔥 САЙТ СДЕЛАЛ ⚡ НИКИТА ⚡ 🔨</span>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card"><div class="stat-number" id="totalCount">0</div><div class="stat-label">ВСЕГО ДЗ</div></div>
+        <div class="stat-card"><div class="stat-number" id="todayCount">0</div><div class="stat-label">НА СЕГОДНЯ</div></div>
+        <div class="stat-card"><div class="stat-number">👑</div><div class="stat-label">НИКИТА ★</div></div>
+    </div>
+
+    <h2 style="color: white; margin-bottom: 15px;">📋 Домашнее задание</h2>
+
+    <div id="homeworkList" class="homework-list"></div>
+
+    <div class="footer-credit">
+        <div><span class="nikita-name">✨ НИКИТА ✨</span><span class="verified">✓ ПОДТВЕРЖДЕНО</span></div>
+        <p style="color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 8px;">⭐ Дизайн и разработка — авторский проект Никиты ⭐</p>
+    </div>
+</div>
+
+<script>
+    // ========================================
+    // 📝 НИКИТА — ТВОИ ДЗ (ВСЁ В ОДНОЙ СТРОЧКЕ ПО МАТЕМАТИКЕ)
+    // ========================================
+    
+    let homework = [
+        { subject: "Математика", task: "стр 26 номер 10 (а), стр 28 номер 5, 7", deadline: "28.04", date: "27.04" },
+        { subject: "Русский язык", task: "стр 108 упр 3, правила", deadline: "28.04", date: "27.04" },
+        { subject: "Литература", task: "Повторение", deadline: "28.04", date: "27.04" }
+    ];
+    
+    // ========================================
+    // КАК ДОБАВИТЬ НОВОЕ ДЗ:
+    // { subject: "Химия", task: "§15 читать", deadline: "30.04", date: "27.04" },
+    // ========================================
+    
+    // ДАЛЬШЕ НИЧЕГО НЕ ТРОГАЙ
+    // ========================================
+    
+    function formatDate() {
+        const today = new Date();
+        const day = today.getDate().toString().padStart(2, '0');
+        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        return `${day}.${month}`;
+    }
+    
+    function displayHomework() {
+        const container = document.getElementById('homeworkList');
+        const totalCount = document.getElementById('totalCount');
+        
+        totalCount.innerText = homework.length;
+        
+        // Подсчёт ДЗ на сегодня/завтра (для статистики)
+        const today = formatDate();
+        let upcomingCount = 0;
+        for (const hw of homework) {
+            if (hw.deadline === today || hw.deadline.includes('завтра')) {
+                upcomingCount++;
+            }
+        }
+        document.getElementById('todayCount').innerText = upcomingCount || Math.min(homework.length, 2);
+        
+        if (homework.length === 0) {
+            container.innerHTML = '<div class="empty-state">🎉 Домашнего задания пока нет! Отдыхайте :)</div>';
+            return;
+        }
+        
+        let html = '';
+        for (let i = 0; i < homework.length; i++) {
+            const hw = homework[i];
+            let emoji = '📝';
+            const subj = hw.subject.toLowerCase();
+            if (subj.includes('матем')) emoji = '📐';
+            else if (subj.includes('рус')) emoji = '📖';
+            else if (subj.includes('литер')) emoji = '📚';
+            else if (subj.includes('физик')) emoji = '⚡';
+            else if (subj.includes('англ')) emoji = '🇬🇧';
+            else if (subj.includes('истори')) emoji = '🏛️';
+            else if (subj.includes('хим')) emoji = '🧪';
+            else if (subj.includes('биолог')) emoji = '🧬';
+            
+            html += `
+                <div class="hw-card">
+                    <div class="hw-header">
+                        <span class="hw-subject">${emoji} ${escapeHtml(hw.subject)}</span>
+                    </div>
+                    <div class="hw-task">${escapeHtml(hw.task)}</div>
+                    <div class="hw-footer">
+                        <span class="hw-deadline">⏰ ${escapeHtml(hw.deadline)}</span>
+                        <span class="hw-date">📅 ${hw.date || formatDate()}</span>
+                        <button class="complete-btn" onclick="markDone(this)">✓ Готово</button>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+    
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    function markDone(btn) {
+        if (btn.classList.contains('done')) {
+            btn.classList.remove('done');
+            btn.innerText = '✓ Готово';
+        } else {
+            btn.classList.add('done');
+            btn.innerText = '✓ Сделано!';
+            if (navigator.vibrate) navigator.vibrate(50);
+        }
+    }
+    
+    displayHomework();
+    
+    console.log('%c✨ Сайт сделал Никита! ✨', 'color: #ffd700; font-size: 16px; font-weight: bold');
+</script>
+
+</body>
+</html>
