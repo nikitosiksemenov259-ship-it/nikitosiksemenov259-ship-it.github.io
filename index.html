@@ -255,15 +255,15 @@
             color: white;
         }
 
-        /* ========== ПРАЗДНИЧНОЕ ОКНО ========== */
-        .gift-button {
+        /* ========== ОБЛАЧКО С СООБЩЕНИЕМ ========== */
+        .message-button {
             position: fixed;
             bottom: 25px;
-            left: 25px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ff6b6b, #ffd700);
-            border-radius: 30px;
+            right: 25px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -272,20 +272,20 @@
             border: 2px solid rgba(255,255,255,0.5);
             z-index: 100;
             transition: all 0.3s;
-            animation: bounce 1s infinite;
+            animation: floatMessage 2s ease-in-out infinite;
         }
 
-        @keyframes bounce {
+        @keyframes floatMessage {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
 
-        .gift-button:active {
+        .message-button:active {
             transform: scale(0.9);
         }
 
-        .gift-button span {
-            font-size: 32px;
+        .message-button span {
+            font-size: 38px;
         }
 
         /* Модальное окно */
@@ -329,13 +329,17 @@
         }
 
         .student-photo {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             margin: 0 auto 15px;
             overflow: hidden;
-            border: 5px solid #ffd700;
+            border: 4px solid #ffd700;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .student-photo img {
@@ -347,10 +351,11 @@
         .message-bubble {
             background: white;
             padding: 20px;
-            border-radius: 30px;
+            border-radius: 28px;
             position: relative;
             margin-top: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #fff, #f0f0f0);
         }
 
         .message-bubble::before {
@@ -377,6 +382,7 @@
             font-size: 14px;
             color: #555;
             font-weight: normal;
+            line-height: 1.4;
         }
 
         .close-modal {
@@ -428,9 +434,9 @@
     </div>
 </div>
 
-<!-- КНОПКА-ПОДАРОК -->
-<div class="gift-button" onclick="openHolidayModal()">
-    <span>🎁</span>
+<!-- ОБЛАЧКО С СООБЩЕНИЕМ -->
+<div class="message-button" onclick="openHolidayModal()">
+    <span>💬</span>
 </div>
 
 <!-- ПРАЗДНИЧНОЕ ОКНО -->
@@ -441,12 +447,12 @@
         </div>
         <div class="message-bubble">
             <p>🎉 ПОЗДРАВЛЯЮ С 1 МАЯ! 🎉</p>
-            <p class="small-text">С Днём Весны и Труда! 🌸<br>
+            <p class="small-text">🌷 С Днём Весны и Труда! 🌷<br><br>
             Желаю тебе отличной учёбы, весеннего настроения<br>
-            и чтобы домашнее задание всегда делалось легко! 😊<br>
-            Твой друг — Никита 🤝</p>
+            и чтобы домашнее задание всегда делалось легко! 😊✨<br><br>
+            🤝 Твой друг — Никита 🤝</p>
         </div>
-        <button class="close-modal" onclick="closeHolidayModal()">Хорошо, спасибо! ✨</button>
+        <button class="close-modal" onclick="closeHolidayModal()">Хорошо, спасибо! 💫</button>
     </div>
 </div>
 
@@ -456,16 +462,15 @@
     // ========================================
     
     let homework = [
-        { subject: "Математика", task: "", deadline: "28.04", date: "27.04" },
-        { subject: "Русский язык", task: "", deadline: "28.04", date: "27.04" },
-        { subject: "Литература", task: "", deadline: "28.04", date: "27.04" }
+        { subject: "Математика", task: "стр", deadline: "28.04", date: "27.04" },
+        { subject: "Русский язык", task: "стр ", deadline: "28.04", date: "27.04" },
+        { subject: "Литература", task: "стр", deadline: "28.04", date: "27.04" }
     ];
     
     // ========================================
     // ДАЛЬШЕ НИЧЕГО НЕ ТРОГАЙ
     // ========================================
     
-    // ФУНКЦИИ ДЛЯ ПРАЗДНИЧНОГО ОКНА
     function openHolidayModal() {
         document.getElementById('holidayModal').classList.add('show');
         if (navigator.vibrate) navigator.vibrate(100);
