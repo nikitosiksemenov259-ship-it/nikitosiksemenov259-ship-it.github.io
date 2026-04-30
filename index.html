@@ -254,6 +254,147 @@
             border-radius: 28px;
             color: white;
         }
+
+        /* ========== ПРАЗДНИЧНОЕ ОКНО ========== */
+        .gift-button {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b6b, #ffd700);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.5);
+            z-index: 100;
+            transition: all 0.3s;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gift-button:active {
+            transform: scale(0.9);
+        }
+
+        .gift-button span {
+            font-size: 32px;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fff, #ffeaa7);
+            border-radius: 40px;
+            padding: 25px;
+            max-width: 350px;
+            width: 90%;
+            text-align: center;
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .student-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 5px solid #ffd700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .student-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-bubble {
+            background: white;
+            padding: 20px;
+            border-radius: 30px;
+            position: relative;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .message-bubble::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid white;
+        }
+
+        .message-bubble p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d63031;
+            margin-bottom: 8px;
+        }
+
+        .message-bubble .small-text {
+            font-size: 14px;
+            color: #555;
+            font-weight: normal;
+        }
+
+        .close-modal {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-modal:active {
+            transform: scale(0.95);
+        }
     </style>
 </head>
 <body>
@@ -287,24 +428,58 @@
     </div>
 </div>
 
+<!-- КНОПКА-ПОДАРОК -->
+<div class="gift-button" onclick="openHolidayModal()">
+    <span>🎁</span>
+</div>
+
+<!-- ПРАЗДНИЧНОЕ ОКНО -->
+<div id="holidayModal" class="modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+        <div class="student-photo">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Школьник">
+        </div>
+        <div class="message-bubble">
+            <p>🎉 ПОЗДРАВЛЯЮ С 1 МАЯ! 🎉</p>
+            <p class="small-text">С Днём Весны и Труда! 🌸<br>
+            Желаю тебе отличной учёбы, весеннего настроения<br>
+            и чтобы домашнее задание всегда делалось легко! 😊<br>
+            Твой друг — Никита 🤝</p>
+        </div>
+        <button class="close-modal" onclick="closeHolidayModal()">Хорошо, спасибо! ✨</button>
+    </div>
+</div>
+
 <script>
     // ========================================
-    // 📝 НИКИТА — ТВОИ ДЗ (ВСЁ В ОДНОЙ СТРОЧКЕ ПО МАТЕМАТИКЕ)
+    // 📝 НИКИТА — ТВОИ ДЗ
     // ========================================
     
     let homework = [
-        { subject: "Математика", task: "стр 31 №8, №12(а,б),стр 32 №16, Листок работа рад ошибками", deadline: "28.04", date: "27.04" },
-        { subject: "Русский язык", task: "стр 115 упр 3, от квартиры, первый - морф.разбор ", deadline: "28.04", date: "27.04" },
-        { subject: "Литература", task: "стр 116 - 121 чит. вопросы.", deadline: "28.04", date: "27.04" }
+        { subject: "Математика", task: "", deadline: "28.04", date: "27.04" },
+        { subject: "Русский язык", task: "", deadline: "28.04", date: "27.04" },
+        { subject: "Литература", task: "", deadline: "28.04", date: "27.04" }
     ];
     
     // ========================================
-    // КАК ДОБАВИТЬ НОВОЕ ДЗ:
-    // { subject: "Химия", task: "§15 читать", deadline: "30.04", date: "27.04" },
-    // ========================================
-    
     // ДАЛЬШЕ НИЧЕГО НЕ ТРОГАЙ
     // ========================================
+    
+    // ФУНКЦИИ ДЛЯ ПРАЗДНИЧНОГО ОКНА
+    function openHolidayModal() {
+        document.getElementById('holidayModal').classList.add('show');
+        if (navigator.vibrate) navigator.vibrate(100);
+    }
+    
+    function closeHolidayModal() {
+        document.getElementById('holidayModal').classList.remove('show');
+    }
+    
+    function closeModalOnBackdrop(event) {
+        if (event.target === document.getElementById('holidayModal')) {
+            closeHolidayModal();
+        }
+    }
     
     function formatDate() {
         const today = new Date();
@@ -319,7 +494,6 @@
         
         totalCount.innerText = homework.length;
         
-        // Подсчёт ДЗ на сегодня/завтра (для статистики)
         const today = formatDate();
         let upcomingCount = 0;
         for (const hw of homework) {
